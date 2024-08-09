@@ -1005,7 +1005,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525316740
 GameObject:
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2050888888}
+      - m_Target: {fileID: 2050888890}
         m_TargetAssemblyTypeName: LoginButtonHandler, Assembly-CSharp
         m_MethodName: Error
         m_Mode: 1
@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2050888888}
+      - m_Target: {fileID: 2050888890}
         m_TargetAssemblyTypeName: LoginButtonHandler, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925094939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63eeaaade62c940c49f001f839410443, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2050888887
@@ -1513,7 +1513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2050888889}
-  - component: {fileID: 2050888888}
+  - component: {fileID: 2050888890}
   m_Layer: 0
   m_Name: ButtonScript
   m_TagString: Untagged
@@ -1521,21 +1521,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2050888888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050888887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf730d565baa742a6aaf98f2251f0a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingCanvas: {fileID: 699882380}
-  LoginCanvas: {fileID: 1789125744}
-  ErrorCanvas: {fileID: 1882327345}
 --- !u!4 &2050888889
 Transform:
   m_ObjectHideFlags: 0
@@ -1549,8 +1534,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2050888890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050888887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a819c4762d545c08ccc8c9f15f76ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadingCanvas: {fileID: 699882380}
+  LoginCanvas: {fileID: 1789125744}
+  ErrorCanvas: {fileID: 1882327345}
 --- !u!1001 &6986744092134401149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1564,7 +1564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4999790013768894770, guid: 7800ad809e0d04557a8de2ec68ef0dac, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4999790013768894770, guid: 7800ad809e0d04557a8de2ec68ef0dac, type: 3}
       propertyPath: m_LocalPosition.x

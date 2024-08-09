@@ -11,6 +11,7 @@ public class NakmaConnection : MonoBehaviour
 {
     public IClient client;
     public ISession UserSession;
+    public ISocket Socket;
 
     private static NakmaConnection instance;
 
@@ -25,11 +26,31 @@ public class NakmaConnection : MonoBehaviour
                 {
                     GameObject singleton = new GameObject("NakmaConnection");
                     instance = singleton.AddComponent<NakmaConnection>();
+                    instance.client = new Client(ClientConstants.type, ClientConstants.host, ClientConstants.port, ClientConstants.serverKey);
                     DontDestroyOnLoad(singleton);
                 }
             }
             return instance;
         }
+    }
+
+
+    public async Task CreateSocket()
+    {
+        try
+        {
+            Socket = client.NewSocket();
+
+            //Socket Creation
+            const bool appearOnline = true;
+            const int connectionTimeout = 30;
+            await Socket.ConnectAsync(UserSession, appearOnline, connectionTimeout);
+        }
+        catch(Exception E)
+        {
+            Debug.Log("Error in establishing Scoket Connection " + E.Message);
+        }
+
     }
 
 
@@ -51,7 +72,8 @@ public class NakmaConnection : MonoBehaviour
     {
         try
         {
-            client = new Client(ClientConstants.type, ClientConstants.host, ClientConstants.port, ClientConstants.serverKey);
+            instance.client = new Client(ClientConstants.type, ClientConstants.host, ClientConstants.port, ClientConstants.serverKey);
+
         }
         catch (Exception E)
         {
