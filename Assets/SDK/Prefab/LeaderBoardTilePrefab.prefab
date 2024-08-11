@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1367741293092398524}
   - component: {fileID: 1367741293092398525}
   m_Layer: 5
-  m_Name: Tile
+  m_Name: LeaderBoardTilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 1367741293444785100}
   - component: {fileID: 1367741293444785099}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: RankText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

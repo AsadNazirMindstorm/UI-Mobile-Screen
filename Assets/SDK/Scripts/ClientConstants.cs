@@ -1,4 +1,5 @@
 ﻿using System;
+
 public static class ClientConstants
 {
     // Constants of Client side Nakama

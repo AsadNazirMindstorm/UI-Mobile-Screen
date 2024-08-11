@@ -4,13 +4,14 @@ using System;
 using UnityEngine.UI;
 using Nakama;
 
-public class EditUserScript : MonoBehaviour
+public class EditUserUI : MonoBehaviour
 {
 
-    public InputField Username;
-    public Image Avatar;
-    public  MainMenuScript Bobj; // Reference to the main menu button script
+    public InputField Username; // Reference to Input Field
+    public Image Avatar; //Reference to the Avatar
+    public  MainMenuHandler Bobj; // Reference to the main menu button script
     public GameObject AvatarWindow; // Reference to the Avatars Scrollable Window in the Edit Screen
+
     public Image AvatarPrefab;
     IApiUsers userAccs;
     private int SelectedAvatar;

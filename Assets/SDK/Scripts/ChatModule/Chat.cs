@@ -3,6 +3,7 @@ using Nakama;
 using System.Threading.Tasks;
 using Nakama.TinyJson;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Chat
 {
@@ -16,22 +17,25 @@ public class Chat
     }
 
     //joiniing a global room
-    public async Task joinGlobalRoom(string roomName, Action<IApiChannelMessage> MessageCallBack)
+    public async Task JoinGlobalRoom(string roomName, Action<IApiChannelMessage> MessageCallBack)
     {
         try
         {
             if (NakmaConnection.Instance.Socket.IsConnected == false)
                 await NakmaConnection.Instance.CreateSocket();
 
-            var persistence = true;
+                var persistence = true;
             var hidden = false;
-            Channel = await NakmaConnection.Instance.Socket.JoinChatAsync(ClientConstants.globalRoomName, ChannelType.Room, persistence, hidden);
 
-            instance.Socket.ReceivedChannelMessage += message =>
-            { 
-                //Invoking the call back function
-                MessageCallBack?.Invoke(message);
-            };
+            
+                Channel = await NakmaConnection.Instance.Socket.JoinChatAsync(ClientConstants.globalRoomName, ChannelType.Room, persistence, hidden);
+
+                instance.Socket.ReceivedChannelMessage += message =>
+                {
+                    //Invoking the call back function
+                    MessageCallBack?.Invoke(message);
+                };
+     
 
         }
         catch (Exception E) {
@@ -39,7 +43,7 @@ public class Chat
         }
 
     }
-    public async Task SendMessage(IChannel Channel, String text)
+    public async Task SendMessage(IChannel Channel, String text, int avatar, string displayName)
     {
         try
         {
@@ -49,7 +53,11 @@ public class Chat
      
             //Converting the message payload
             var data = new Dictionary<string, string>
-            {{"message",UserText } };
+            {
+                {"message",UserText },
+                {"avatar",avatar.ToString() },
+                {"displayName", displayName }
+            };
 
             string JsonText = data.ToJson();
 
