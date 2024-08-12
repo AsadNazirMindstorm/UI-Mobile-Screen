@@ -68,8 +68,12 @@ public class LeaderBoardUI : MonoBehaviour
                 //And The LeaderBoard Tile Prefab has a specific Desgin set to it
               
                 GameObject tile = GameObject.Instantiate(LeaderBoardTilePrefab, Content.transform);
+
+                if(res.data.records[i].ownerId==NakmaConnection.Instance.UserSession.UserId)
+                    tile.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = "You";
                 //Setting the username
-                tile.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = res.data.records[i].username;
+                else
+                    tile.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = res.data.records[i].username;
 
                 //setting the score
                 tile.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = res.data.records[i].score.ToString();
@@ -79,6 +83,8 @@ public class LeaderBoardUI : MonoBehaviour
 
                 //For closure
                 int index = i;
+                if (res.data.records[i].ownerId == NakmaConnection.Instance.UserSession.UserId) continue;
+
                 //setting the 1 v 1 chat button
                 tile.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(
                     async () => {

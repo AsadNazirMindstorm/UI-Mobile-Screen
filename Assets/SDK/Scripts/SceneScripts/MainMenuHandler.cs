@@ -103,7 +103,7 @@ public class MainMenuHandler : MonoBehaviour
         //if the user session expires than bring back the login screen
         try
         {
-            if (NakmaConnection.Instance.UserSession.IsExpired == true)
+            if (NakmaConnection.Instance.client ==null || NakmaConnection.Instance.UserSession.IsExpired == true)
                 SceneManager.LoadScene(ClientConstants.loadingScreenName);
         }
         catch(Exception E)
