@@ -32,12 +32,16 @@ public class ChatUI : MonoBehaviour
         messageQueue = new();
     }
 
-    public async Task LoadChatCanvas(bool isGlobalChat)
+    public async Task LoadChatCanvas(bool isGlobalChat, string userId)
     {
         try
         {
+            UserProfileCache = new();
             this.Cobj = new(NakmaConnection.Instance);
-            await Cobj.JoinGlobalRoom(ClientConstants.globalRoomName, ChatHandler);
+            if (isGlobalChat)
+                await Cobj.JoinGlobalRoom(ClientConstants.globalRoomName, ChatHandler);
+            else
+                await Cobj.JoinOneVOneChat(userId,ChatHandler);
 
             await this.LoadOldMessages();
 
@@ -136,7 +140,7 @@ public class ChatUI : MonoBehaviour
                 messageBox.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = user.DisplayName;
 
                 // Set the Avatar
-                //Debug.Log("Avatar Image Index is in pop : " + avatarImgIndex);
+                Debug.Log("Avatar Image Index is in pop : " + avatarImgIndex);
                 messageBox.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = MainMenuHandlerUI.Avatars[avatarImgIndex];
             }
         }
@@ -149,7 +153,7 @@ public class ChatUI : MonoBehaviour
 
 
     //Chat Handler Callback function
-    void ChatHandler(IApiChannelMessage message)
+    public void ChatHandler(IApiChannelMessage message)
     {
         try
         {
@@ -184,9 +188,27 @@ public class ChatUI : MonoBehaviour
 
     }
 
+    public async void OneOnoneChatButton(string userId)
+    {
+        try
+        {
+            this.Cobj = new(NakmaConnection.Instance);
+            await Cobj.JoinOneVOneChat(userId, ChatHandler);
+            Debug.Log("User id is : " + userId);
+        }
+        catch(Exception E)
+        {
+            Debug.Log("Exception in 1 v 1 chat button  : " + E.Message);
+        }
+
+    }
+
+
     //Close Button for Chat Canvas
     public void CloseButton()
     {
+        Cobj.LeaveChat();
+        UserProfileCache.Clear();
         MainMenuHandlerUI.ToggleCanvas(MainMenuHandlerUI.mainMenuCanvas);
     }
 

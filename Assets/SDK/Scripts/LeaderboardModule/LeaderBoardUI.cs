@@ -12,7 +12,12 @@ public class LeaderBoardUI : MonoBehaviour
     public GameObject LeaderBoardTilePrefab;
     public GameObject Content;
 
+
+    //MainMenuScript Handler
     public MainMenuHandler MainMenuHandlerUI;
+
+    //ChatUI handler
+    public ChatUI ChatUIHandler;
 
     // Use this for initialization
     void Start()
@@ -72,6 +77,15 @@ public class LeaderBoardUI : MonoBehaviour
                 //setting the rank
                 tile.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = res.data.records[i].rank.ToString();
 
+                //For closure
+                int index = i;
+                //setting the 1 v 1 chat button
+                tile.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(
+                    async () => {
+                        await ChatUIHandler.LoadChatCanvas(false, res.data.records[index].ownerId);
+                        MainMenuHandlerUI.ToggleCanvas(MainMenuHandlerUI.ChatCanvas);
+                    }
+                    );
             }
         }
         catch (Exception E)

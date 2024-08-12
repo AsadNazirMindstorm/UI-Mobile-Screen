@@ -30,7 +30,7 @@ public class ScoreUI : MonoBehaviour
         try
         {
             //Empty Input Handling over here
-            if (ScoreInputField.text.Equals("")) return;
+            if (ScoreInputField.text.Equals("") || ScoreInputField.text.Trim().Equals("") || ScoreInputField.text.Length==0 ) return;
 
             //setting the user score
             this.UserScore = int.Parse(ScoreInputField.text);

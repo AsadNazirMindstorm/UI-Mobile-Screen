@@ -36,6 +36,13 @@ public class MainMenuHandler : MonoBehaviour
             //if the connection is lost or session was expired
             if (!NakmaConnection.Instance || NakmaConnection.Instance.UserSession.IsExpired) throw new Exception("Session Timed out");
 
+            //Receiving Notification for online users
+            NakmaConnection.Instance.Socket.ReceivedNotification += notification =>
+            {
+                Debug.Log("Notification content: "  + notification.Content);
+            };
+
+
             //Toggling the Main Menu Canvas when the scene loads
             ToggleCanvas(mainMenuCanvas);
 
@@ -80,7 +87,7 @@ public class MainMenuHandler : MonoBehaviour
         try
         {
             ToggleCanvas(this.LoadingCanvas);
-            await ChatUIHandler.LoadChatCanvas(false);
+            await ChatUIHandler.LoadChatCanvas(true,null);
             ToggleCanvas(this.ChatCanvas);
         }
         catch(Exception E)
@@ -89,7 +96,6 @@ public class MainMenuHandler : MonoBehaviour
         }
 
     }
-
 
     // Update is called once per frame
     void Update()

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Auth
 {
+    // Declare a field for the event handler
+    private static Action<IApiChannelMessage> _messageHandler;
 
     public Auth(NakmaConnection obj)
     {

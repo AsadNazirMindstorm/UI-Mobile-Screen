@@ -10,6 +10,10 @@ public class LoginButtonHandler : MonoBehaviour
     public Canvas LoginCanvas;
     public Canvas ErrorCanvas;
 
+
+    //ChatUI Handlers
+    public ChatUI ChatUIHandler;
+
     NakmaConnection nakma;
 
     // Start is called before the first frame update
